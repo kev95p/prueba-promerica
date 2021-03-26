@@ -5,19 +5,36 @@ import { ClienteModel } from '../models/cliente.model';
 import { ENDPOINTS } from '../utils/enpoints';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ClientesService {
+  constructor(private client: HttpClient) { }
 
-  constructor(private client:HttpClient) { }
-
-  getAll():Observable<ClienteModel[]>{
-    return this.client.get<ClienteModel[]>(ENDPOINTS.OBTENER_CLIENTES)
+  getAll(): Observable<ClienteModel[]> {
+    return this.client.get<ClienteModel[]>(ENDPOINTS.OBTENER_CLIENTES);
   }
 
-  save(cliente:ClienteModel){
-    let headers = new HttpHeaders().append('Content-Type','application/json')
-    return this.client.post<ClienteModel[]>(ENDPOINTS.GUARDAR_CLIENTES,JSON.stringify(cliente),{headers})
+  getOne(id: string): Observable<ClienteModel> {
+    return this.client.get<ClienteModel>(
+      ENDPOINTS.OBTENER_CLIENTE.replace(':id', id)
+    );
   }
 
+  buscarCliente(query: string): Observable<ClienteModel[]> {
+    return this.client.get<ClienteModel[]>(
+      ENDPOINTS.OBTENER_CLIENTES.concat(`?nombre=${query}`)
+    );
+  }
+
+  save(cliente: ClienteModel): Observable<any> {
+    const headers = new HttpHeaders().append(
+      'Content-Type',
+      'application/json'
+    );
+    return this.client.post<ClienteModel[]>(
+      ENDPOINTS.GUARDAR_CLIENTE,
+      JSON.stringify(cliente),
+      { headers }
+    );
+  }
 }

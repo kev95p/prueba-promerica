@@ -14,7 +14,9 @@ import { ClientesService } from 'src/app/services/clientes.service';
   templateUrl: './lista-clientes.component.html',
   styleUrls: ['./lista-clientes.component.scss'],
 })
-export class ListaClientesComponent extends BaseCrudComponent implements OnInit {
+export class ListaClientesComponent
+  extends BaseCrudComponent
+  implements OnInit {
   clientes: ClienteModel[] = [];
 
   tableProperties: TableProperties = {
@@ -23,10 +25,13 @@ export class ListaClientesComponent extends BaseCrudComponent implements OnInit 
       { name: 'Nombre', field: 'nombre' },
       { name: 'Apellidos', field: 'apellidos' },
     ],
-  }
+  };
 
-  constructor(protected componentFactoryResolver: ComponentFactoryResolver,private clientesService:ClientesService) {
-    super(componentFactoryResolver)
+  constructor(
+    protected componentFactoryResolver: ComponentFactoryResolver,
+    private clientesService: ClientesService
+  ) {
+    super(componentFactoryResolver);
   }
 
   ngOnInit(): void {
@@ -34,13 +39,12 @@ export class ListaClientesComponent extends BaseCrudComponent implements OnInit 
     this.loadData();
   }
 
-  loadData() {
-    this.clientesService.getAll()
-    .subscribe(clientes=>{
-      this.clientes = clientes
+  loadData(): void {
+    this.clientesService.getAll().subscribe((clientes) => {
+      this.clientes = clientes;
       this.loaded = true;
       this.tableProperties.data = clientes;
-      this.loadComponent(this.tableProperties)
-    })
+      this.loadComponent(this.tableProperties);
+    });
   }
 }

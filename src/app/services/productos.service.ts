@@ -5,19 +5,33 @@ import { ProductoModel } from '../models/producto.model';
 import { ENDPOINTS } from '../utils/enpoints';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProductosService {
+  constructor(private client: HttpClient) {}
 
-  constructor(private client:HttpClient) { }
-
-  getAll():Observable<ProductoModel[]>{
-    return this.client.get<ProductoModel[]>(ENDPOINTS.OBTENER_PRODUCTOS)
+  getAll(): Observable<ProductoModel[]> {
+    return this.client.get<ProductoModel[]>(ENDPOINTS.OBTENER_PRODUCTOS);
   }
 
-  save(producto:ProductoModel){
-    let headers = new HttpHeaders().append('Content-Type','application/json')
-    return this.client.post<ProductoModel[]>(ENDPOINTS.GUARDAR_PRODUCTO,JSON.stringify(producto),{headers})
+  buscarProducto(query: string): Observable<ProductoModel[]> {
+    return this.client.get<ProductoModel[]>(
+      ENDPOINTS.OBTENER_PRODUCTOS.concat(`?nombre=${query}%`)
+    );
   }
 
+  getOne(id: string): Observable<ProductoModel> {
+    return this.client.get<ProductoModel>(
+      ENDPOINTS.OBTENER_PRODUCTO.replace(':id', id)
+    );
+  }
+
+  save(producto: ProductoModel) {
+    let headers = new HttpHeaders().append('Content-Type', 'application/json');
+    return this.client.post<ProductoModel[]>(
+      ENDPOINTS.GUARDAR_PRODUCTO,
+      JSON.stringify(producto),
+      { headers }
+    );
+  }
 }

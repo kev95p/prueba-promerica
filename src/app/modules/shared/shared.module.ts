@@ -8,21 +8,30 @@ import { LoadingTableComponent } from './components/loading-table/loading-table.
 import { NoDataTableComponent } from './components/no-data-table/no-data-table.component';
 import { BaseCrudComponent } from './components/base-crud.component';
 import { BaseFormComponent } from './components/base-form.component';
-
-
+import { ValidateMessageDirective } from './directives/validate-message.directive';
+import { SelectListComponent } from './components/select-list/select-list.component';
 
 @NgModule({
-  declarations: [HeaderComponent, DataLoadDirective, DataTableComponent, LoadingTableComponent, NoDataTableComponent,BaseCrudComponent,BaseFormComponent],
-  imports: [
-    CommonModule,
-    RouterModule
-  ],
-  exports: [
+  declarations: [
     HeaderComponent,
     DataLoadDirective,
     DataTableComponent,
+    LoadingTableComponent,
     NoDataTableComponent,
-    LoadingTableComponent
-  ]
+    BaseCrudComponent,
+    BaseFormComponent,
+    ValidateMessageDirective,
+    SelectListComponent,
+  ],
+  imports: [CommonModule, RouterModule],
+  exports: [
+    HeaderComponent,
+    DataLoadDirective,
+    ValidateMessageDirective,
+    DataTableComponent,
+    NoDataTableComponent,
+    LoadingTableComponent,
+    SelectListComponent
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}

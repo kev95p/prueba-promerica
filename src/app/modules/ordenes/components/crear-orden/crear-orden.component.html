@@ -1,0 +1,60 @@
+<div class="row">
+  <div class="offset-2 col-8">
+    <h2 class="mt-2">Crear Orden</h2>
+    <form [formGroup]="dataForm" (ngSubmit)="guardarOrden()">
+      <input type="hidden" formControlName="productoId">
+      <input type="hidden" formControlName="clienteId">
+      <div class="form-group">
+        <label for="txtProducto">Producto</label>
+        <input type="text" formControlName="producto" class="form-control" id="txtProducto"
+          placeholder="Elegir producto" appValidateMessage [data]="productos" (selectedValue)="productoSeleccionado($event)"/>
+      </div>
+
+      <div class="form-group" >
+        <label for="txtCliente">Cliente</label>
+        <input type="text" formControlName="cliente" class="form-control" id="txtCliente"
+          placeholder="Elegir cliente" appValidateMessage [data]="clientes"  (selectedValue)="clienteSeleccionado($event)" />
+        <div *ngIf="
+        dataForm.controls['cliente'].invalid &&
+            (dataForm.controls['cliente'].dirty ||
+            dataForm.controls['cliente'].touched)
+          " class="alert alert-danger mt-1" role="alert">
+          <div *ngIf="dataForm.controls['cliente'].errors!.required">
+            Este campo es requerido
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="txtCantidad">Cantidad</label>
+        <input type="text" formControlName="cantidad" class="form-control" id="txtCantidad"
+          placeholder="Digite la cantidad" />
+        <div *ngIf="
+        dataForm.controls['cantidad'].invalid &&
+            (dataForm.controls['cantidad'].dirty ||
+            dataForm.controls['cantidad'].touched)
+          " class="alert alert-danger mt-1" role="alert">
+          <div *ngIf="dataForm.controls['cantidad'].errors!.required">
+            Este campo es requerido
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="txtFecha">Fecha</label>
+        <input type="date" formControlName="fecha" class="form-control" id="txtFecha"
+          placeholder="Seleccione la fecha"/>
+        <div *ngIf="
+        dataForm.controls['fecha'].invalid &&
+            (dataForm.controls['fecha'].dirty ||
+            dataForm.controls['fecha'].touched)
+          " class="alert alert-danger mt-1" role="alert">
+          <div *ngIf="dataForm.controls['cantfechaidad'].errors!.required">
+            Este campo es requerido
+          </div>
+        </div>
+      </div>
+
+
+      <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+  </div>
+</div>
