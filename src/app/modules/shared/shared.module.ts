@@ -7,11 +7,12 @@ import { DataTableComponent } from './components/data-table/data-table.component
 import { LoadingTableComponent } from './components/loading-table/loading-table.component';
 import { NoDataTableComponent } from './components/no-data-table/no-data-table.component';
 import { BaseCrudComponent } from './components/base-crud.component';
+import { BaseFormComponent } from './components/base-form.component';
 
 
 
 @NgModule({
-  declarations: [HeaderComponent, DataLoadDirective, DataTableComponent, LoadingTableComponent, NoDataTableComponent,BaseCrudComponent],
+  declarations: [HeaderComponent, DataLoadDirective, DataTableComponent, LoadingTableComponent, NoDataTableComponent,BaseCrudComponent,BaseFormComponent],
   imports: [
     CommonModule,
     RouterModule

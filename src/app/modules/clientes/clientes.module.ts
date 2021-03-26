@@ -5,12 +5,14 @@ import { AgregarClienteComponent } from './components/agregar-cliente/agregar-cl
 import { ClientesRoutingModule } from './clientes-routing.module';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { SharedModule } from '../shared/shared.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [ListaClientesComponent, AgregarClienteComponent],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     ClientesRoutingModule,
     ButtonsModule,
     SharedModule

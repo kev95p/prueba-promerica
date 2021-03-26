@@ -11,7 +11,7 @@ import { NoDataTableComponent } from './no-data-table/no-data-table.component';
 })
 export class BaseCrudComponent {
   loaded: boolean = false;
-  @ViewChild(DataLoadDirective, { static: true })
+  @ViewChild(DataLoadDirective,{static:true})
   appDataLoad?: DataLoadDirective;
 
   constructor(protected componentFactoryResolver: ComponentFactoryResolver) {}
