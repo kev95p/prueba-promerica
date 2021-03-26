@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { TableProperties } from '../../interfaces/table-properties';
 import { TableComponent } from '../../interfaces/table.component';
 
 @Component({
@@ -7,8 +8,8 @@ import { TableComponent } from '../../interfaces/table.component';
   styleUrls: ['./data-table.component.scss']
 })
 export class DataTableComponent implements OnInit,TableComponent {
-
-  data: any;
+  @Input()
+  data: TableProperties = {headers:[{name:"",field:""}],data:[{}]};
 
   constructor() { }
 

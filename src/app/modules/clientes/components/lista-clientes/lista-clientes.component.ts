@@ -1,10 +1,15 @@
-import { Component, ComponentFactoryResolver, OnInit, ViewChild } from '@angular/core';
-import { of } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import {
+  Component,
+  ComponentFactoryResolver,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
+import { ClienteModel } from 'src/app/models/cliente.model';
 import { DataTableComponent } from 'src/app/modules/shared/components/data-table/data-table.component';
 import { NoDataTableComponent } from 'src/app/modules/shared/components/no-data-table/no-data-table.component';
 import { DataLoadDirective } from 'src/app/modules/shared/directives/data-load.directive';
 import { TableComponent } from 'src/app/modules/shared/interfaces/table.component';
+import { ClientesService } from 'src/app/services/clientes.service';
 
 @Component({
   selector: 'app-lista-clientes',
@@ -13,9 +18,12 @@ import { TableComponent } from 'src/app/modules/shared/interfaces/table.componen
 })
 export class ListaClientesComponent implements OnInit {
   loaded: boolean = false;
-  @ViewChild(DataLoadDirective, {static: true}) appDataLoad?: DataLoadDirective;
+  clientes: ClienteModel[] = [];
 
-  constructor(private componentFactoryResolver: ComponentFactoryResolver) {}
+  @ViewChild(DataLoadDirective, { static: true })
+  appDataLoad?: DataLoadDirective;
+
+  constructor(private componentFactoryResolver: ComponentFactoryResolver,private clientesService:ClientesService) {}
 
   ngOnInit(): void {
     this.loadComponent();
@@ -35,15 +43,24 @@ export class ListaClientesComponent implements OnInit {
     }
     const viewContainerRef = this.appDataLoad?.viewContainerRef;
     viewContainerRef?.clear();
-    const componentRef = viewContainerRef?.createComponent<TableComponent>(componentFactory);
+    const componentRef = viewContainerRef?.createComponent<TableComponent>(
+      componentFactory
+    );
+    componentRef!.instance.data = {
+      data: this.clientes,
+      headers: [
+        { name: 'Nombre', field: 'nombre' },
+        { name: 'Apellidos', field: 'apellidos' },
+      ],
+    };
   }
 
   loadData() {
-    of(true)
-      .pipe(delay(1000))
-      .subscribe((v) => {
-        this.loaded = v;
-        this.loadComponent();
-      });
+    this.clientesService.getAll()
+    .subscribe(clientes=>{
+      this.clientes = clientes
+      this.loaded = true;
+      this.loadComponent();
+    })
   }
 }

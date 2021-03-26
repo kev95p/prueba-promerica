@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TableProperties } from '../../interfaces/table-properties';
 import { TableComponent } from '../../interfaces/table.component';
 
 @Component({
@@ -8,7 +9,7 @@ import { TableComponent } from '../../interfaces/table.component';
 })
 export class NoDataTableComponent implements OnInit,TableComponent {
 
-  data: any;
+  data?: TableProperties;
 
   constructor() { }
 
