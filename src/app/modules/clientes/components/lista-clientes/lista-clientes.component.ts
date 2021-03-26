@@ -5,10 +5,8 @@ import {
   ViewChild,
 } from '@angular/core';
 import { ClienteModel } from 'src/app/models/cliente.model';
-import { DataTableComponent } from 'src/app/modules/shared/components/data-table/data-table.component';
-import { NoDataTableComponent } from 'src/app/modules/shared/components/no-data-table/no-data-table.component';
-import { DataLoadDirective } from 'src/app/modules/shared/directives/data-load.directive';
-import { TableComponent } from 'src/app/modules/shared/interfaces/table.component';
+import { BaseCrudComponent } from 'src/app/modules/shared/components/base-crud.component';
+import { TableProperties } from 'src/app/modules/shared/interfaces/table-properties';
 import { ClientesService } from 'src/app/services/clientes.service';
 
 @Component({
@@ -16,43 +14,24 @@ import { ClientesService } from 'src/app/services/clientes.service';
   templateUrl: './lista-clientes.component.html',
   styleUrls: ['./lista-clientes.component.scss'],
 })
-export class ListaClientesComponent implements OnInit {
-  loaded: boolean = false;
+export class ListaClientesComponent extends BaseCrudComponent implements OnInit {
   clientes: ClienteModel[] = [];
 
-  @ViewChild(DataLoadDirective, { static: true })
-  appDataLoad?: DataLoadDirective;
-
-  constructor(private componentFactoryResolver: ComponentFactoryResolver,private clientesService:ClientesService) {}
-
-  ngOnInit(): void {
-    this.loadComponent();
-    this.loadData();
+  tableProperties: TableProperties = {
+    data: this.clientes,
+    headers: [
+      { name: 'Nombre', field: 'nombre' },
+      { name: 'Apellidos', field: 'apellidos' },
+    ],
   }
 
-  loadComponent() {
-    let componentFactory = null;
-    if (!this.loaded) {
-      componentFactory = this.componentFactoryResolver.resolveComponentFactory(
-        NoDataTableComponent
-      );
-    } else {
-      componentFactory = this.componentFactoryResolver.resolveComponentFactory(
-        DataTableComponent
-      );
-    }
-    const viewContainerRef = this.appDataLoad?.viewContainerRef;
-    viewContainerRef?.clear();
-    const componentRef = viewContainerRef?.createComponent<TableComponent>(
-      componentFactory
-    );
-    componentRef!.instance.data = {
-      data: this.clientes,
-      headers: [
-        { name: 'Nombre', field: 'nombre' },
-        { name: 'Apellidos', field: 'apellidos' },
-      ],
-    };
+  constructor(protected componentFactoryResolver: ComponentFactoryResolver,private clientesService:ClientesService) {
+    super(componentFactoryResolver)
+  }
+
+  ngOnInit(): void {
+    this.loadComponent(this.tableProperties);
+    this.loadData();
   }
 
   loadData() {
@@ -60,7 +39,8 @@ export class ListaClientesComponent implements OnInit {
     .subscribe(clientes=>{
       this.clientes = clientes
       this.loaded = true;
-      this.loadComponent();
+      this.tableProperties.data = clientes;
+      this.loadComponent(this.tableProperties)
     })
   }
 }
