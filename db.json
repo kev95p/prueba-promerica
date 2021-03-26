@@ -1,0 +1,37 @@
+{
+  "clientes": [
+    {
+      "id": "1",
+
+      "nombre": "Debora",
+
+      "apellidos": "Guardado"
+    }
+  ],
+
+  "ordenes": [
+    {
+      "idProducto": "1",
+
+      "idCliente": "1",
+
+      "idOrden": "1",
+
+      "cantidad": "1",
+
+      "fecha": "Debora"
+    }
+  ],
+
+  "productos": [
+    {
+      "id": "1",
+
+      "nombre": "Debora",
+
+      "descripcion": "Guardado",
+
+      "precio": "10"
+    }
+  ]
+}
