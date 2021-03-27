@@ -20,7 +20,7 @@ export class ListaProductosComponent
     headers: [
       { name: 'Nombre', field: 'nombre' },
       { name: 'Descripción', field: 'descripcion' },
-      { name: 'Precio', field: 'precio' },
+      { name: 'Precio', field: 'precio', currency: true },
     ],
     edit: true,
   };

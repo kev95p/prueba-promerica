@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { OrdenModel } from 'src/app/models/orden.model';
 import { BaseFormComponent } from 'src/app/modules/shared/components/base-form.component';
@@ -20,13 +21,14 @@ export class CrearOrdenComponent extends BaseFormComponent implements OnInit {
   dataForm = new FormGroup({
     producto: new FormControl('', Validators.compose([Validators.required])),
     cliente: new FormControl('', Validators.compose([Validators.required])),
-    cantidad: new FormControl('', Validators.compose([Validators.required])),
+    cantidad: new FormControl('', Validators.compose([Validators.required, Validators.min(1)])),
     fecha: new FormControl('', Validators.compose([Validators.required])),
     productoId: new FormControl(''),
     clienteId: new FormControl(''),
   });
 
   constructor(
+    private router: Router,
     private clientesService: ClientesService,
     private productosService: ProductosService,
     private ordenesService: OrdenesService
@@ -90,7 +92,7 @@ export class CrearOrdenComponent extends BaseFormComponent implements OnInit {
     orden.idCliente = this.dataForm.controls.clienteId.value;
     orden.fecha = this.dataForm.controls.fecha.value;
     this.ordenesService.save(orden).subscribe(r=>{
-
+      this.router.navigate(['/ordenes']);
     });
   }
 }

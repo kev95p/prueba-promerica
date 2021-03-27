@@ -6,14 +6,10 @@
       <input type="hidden" formControlName="clienteId" >
       <div class="form-group">
         <label for="txtProducto">Producto</label>
-        <input type="text" formControlName="producto" class="form-control" id="txtProducto"
+        <input type="text" formControlName="producto" class="form-control" id="txtProducto" readonly
           placeholder="Elegir producto" appValidateMessage [data]="productos" (selectedValue)="productoSeleccionado($event)" autocomplete="off"/>
-          <div *ngIf="
-          dataForm.controls.producto.invalid &&
-              (dataForm.controls.producto.dirty ||
-              dataForm.controls.producto.touched)
-            " class="alert alert-danger mt-1" role="alert">
-            <div *ngIf="dataForm.controls.producto.errors!.required">
+          <div *ngIf="dataForm.controls.producto.touched && dataForm.controls.producto.errors">
+            <div class="text-danger" *ngIf="dataForm.controls.producto.errors.required">
               Este campo es requerido
             </div>
           </div>
@@ -21,45 +17,36 @@
 
       <div class="form-group" >
         <label for="txtCliente">Cliente</label>
-        <input type="text" formControlName="cliente" class="form-control" id="txtCliente"
+        <input type="text" formControlName="cliente" class="form-control" id="txtCliente" readonly
           placeholder="Elegir cliente" appValidateMessage [data]="clientes"  (selectedValue)="clienteSeleccionado($event)" autocomplete="off" />
-        <div *ngIf="
-        dataForm.controls['cliente'].invalid &&
-            (dataForm.controls['cliente'].dirty ||
-            dataForm.controls['cliente'].touched)
-          " class="alert alert-danger mt-1" role="alert">
-          <div *ngIf="dataForm.controls['cliente'].errors!.required">
-            Este campo es requerido
+          <div *ngIf="dataForm.controls.cliente.touched && dataForm.controls.cliente.errors">
+            <div class="text-danger" *ngIf="dataForm.controls.cliente.errors.required">
+              Este campo es requerido
+            </div>
           </div>
-        </div>
       </div>
       <div class="form-group">
         <label for="txtCantidad">Cantidad</label>
         <input type="number" formControlName="cantidad" class="form-control" id="txtCantidad"
           placeholder="Digite la cantidad" autocomplete="off" />
-        <div *ngIf="
-        dataForm.controls['cantidad'].invalid &&
-            (dataForm.controls['cantidad'].dirty ||
-            dataForm.controls['cantidad'].touched)
-          " class="alert alert-danger mt-1" role="alert">
-          <div *ngIf="dataForm.controls['cantidad'].errors!.required">
-            Este campo es requerido
+          <div *ngIf="dataForm.controls.cantidad.touched && dataForm.controls.cantidad.errors">
+            <div class="text-danger" *ngIf="dataForm.controls.cantidad.errors.required">
+              Este campo es requerido
+            </div>
+            <div class="text-danger" *ngIf="dataForm.controls.cantidad.errors.min">
+              Este campo tiene que ser mayor a 0
+            </div>
           </div>
-        </div>
       </div>
       <div class="form-group">
         <label for="txtFecha">Fecha</label>
         <input type="date" formControlName="fecha" class="form-control" id="txtFecha"
           placeholder="Seleccione la fecha" autocomplete="off"/>
-        <div *ngIf="
-        dataForm.controls['fecha'].invalid &&
-            (dataForm.controls['fecha'].dirty ||
-            dataForm.controls['fecha'].touched)
-          " class="alert alert-danger mt-1" role="alert">
-          <div *ngIf="dataForm.controls['fecha'].errors!.required">
-            Este campo es requerido
+          <div *ngIf="dataForm.controls.fecha.touched && dataForm.controls.fecha.errors">
+            <div class="text-danger" *ngIf="dataForm.controls.fecha.errors.required">
+              Este campo es requerido
+            </div>
           </div>
-        </div>
       </div>
 
 

@@ -9,7 +9,10 @@
   <tbody>
     <tr *ngFor="let d of data.data; index as i">
       <th scope="row">{{ i + 1 }}</th>
-      <td *ngFor="let h of data.headers">{{ processField(h.field,d) }}</td>
+      <td *ngFor="let h of data.headers">
+        <span *ngIf="h.currency"> {{ processField(h.field,d) | currency}} </span>
+        <span *ngIf="!h.currency"> {{ processField(h.field,d)}} </span>
+      </td>
       <td style="width: 10%;">
         <div class="btn-group" role="group">
           <button type="button" (click)="onDetalle(d.id)" class="btn btn-info">

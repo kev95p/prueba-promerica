@@ -19,6 +19,11 @@
       "id": "4",
       "nombre": "Kevin",
       "apellidos": "Pleitez"
+    },
+    {
+      "id": "h9pwnDz",
+      "nombre": "Admin",
+      "apellidos": "Dos"
     }
   ],
   "ordenes": [
@@ -42,6 +47,13 @@
       "idCliente": "2",
       "fecha": "2021-03-19",
       "id": "VJqn06G"
+    },
+    {
+      "cantidad": 2,
+      "idProducto": "2",
+      "idCliente": "3",
+      "fecha": "2021-03-19",
+      "id": "Bnqmjxo"
     }
   ],
   "productos": [
@@ -68,6 +80,12 @@
       "descripcion": "fa;fadfmap;fljmadfqa",
       "precio": "100",
       "id": "K6xgdiR"
+    },
+    {
+      "nombre": "Producto 1",
+      "descripcion": "descripcion de prueba",
+      "precio": 33.4,
+      "id": "rFMlRxq"
     }
   ]
 }

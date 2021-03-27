@@ -8,6 +8,7 @@ import { DataLoadDirective } from '../directives/data-load.directive';
 import { TableProperties } from '../interfaces/table-properties';
 import { TableComponent } from '../interfaces/table.component';
 import { DataTableComponent } from './data-table/data-table.component';
+import { LoadingTableComponent } from './loading-table/loading-table.component';
 import { NoDataTableComponent } from './no-data-table/no-data-table.component';
 
 @Component({
@@ -25,7 +26,7 @@ export class BaseCrudComponent {
     let componentFactory = null;
     if (!this.loaded) {
       componentFactory = this.componentFactoryResolver.resolveComponentFactory(
-        NoDataTableComponent
+        LoadingTableComponent
       );
     } else {
       componentFactory = this.componentFactoryResolver.resolveComponentFactory(

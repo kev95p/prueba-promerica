@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ClienteModel } from 'src/app/models/cliente.model';
 import { BaseFormComponent } from 'src/app/modules/shared/components/base-form.component';
 import { ClientesService } from 'src/app/services/clientes.service';
@@ -20,7 +20,7 @@ export class AgregarClienteComponent
 
   private id = '';
 
-  constructor(private route: ActivatedRoute, private clientesService: ClientesService) {
+  constructor(private router: Router, private route: ActivatedRoute, private clientesService: ClientesService) {
     super();
   }
 
@@ -45,7 +45,7 @@ export class AgregarClienteComponent
       cliente.id = this.id;
       cliente.nombre = this.dataForm.controls['nombre'].value;
       cliente.apellidos = this.dataForm.controls['apellidos'].value;
-      this.clientesService.save(cliente).subscribe((r) => console.log(r));
+      this.clientesService.save(cliente).subscribe((r) => this.router.navigate(['/clientes']));
     }
   }
 }

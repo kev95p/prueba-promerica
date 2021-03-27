@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductoModel } from 'src/app/models/producto.model';
 import { ProductosService } from 'src/app/services/productos.service';
 
@@ -14,12 +14,12 @@ export class AgregarProductoComponent implements OnInit {
   id = '';
 
   dataForm = new FormGroup({
-    nombre: new FormControl('', Validators.compose([Validators.required])),
-    descripcion: new FormControl('', Validators.compose([Validators.required])),
-    precio: new FormControl('', Validators.compose([Validators.required]))
+    nombre: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(20), Validators.minLength(4)])),
+    descripcion: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(200)])),
+    precio: new FormControl('', Validators.compose([Validators.required, Validators.min(0.01)]))
   });
 
-  constructor(private route: ActivatedRoute, private productosService: ProductosService) { }
+  constructor(private router: Router ,private route: ActivatedRoute, private productosService: ProductosService) { }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
@@ -34,6 +34,7 @@ export class AgregarProductoComponent implements OnInit {
   }
 
   guardarProducto(): void{
+    console.log(this.dataForm.controls.precio.errors);
     const producto = new ProductoModel();
     producto.nombre = this.dataForm.controls.nombre.value;
     producto.descripcion = this.dataForm.controls.descripcion.value;
@@ -41,8 +42,8 @@ export class AgregarProductoComponent implements OnInit {
     producto.id = this.id;
     this.productosService.save(producto)
     .subscribe(r=>{
-
-    })
+      this.router.navigate(['/productos']);
+    });
   }
 
 }
