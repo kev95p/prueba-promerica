@@ -2,6 +2,7 @@ import { environment } from 'src/environments/environment';
 
 export const ENDPOINTS = {
   OBTENER_ORDENES: environment.apiUrl.concat('ordenes'),
+  OBTENER_ORDEN: environment.apiUrl.concat('ordenes/:id'),
   GUARDAR_ORDEN: environment.apiUrl.concat('ordenes'),
 
   OBTENER_CLIENTES: environment.apiUrl.concat('clientes'),

@@ -1,8 +1,13 @@
-export class OrdenModel{
+import { BaseModel } from './base.model';
+import { ClienteModel } from './cliente.model';
+import { ProductoModel } from './producto.model';
+
+export class OrdenModel implements BaseModel {
+  id?: string;
   idProducto?: string;
-  nombreProducto?:string;
+  producto?: ProductoModel;
+  cliente?: ClienteModel;
   idCliente?: string;
-  nombreCliente?:String;
   cantidad?: string;
   fecha?: Date;
 }

@@ -10,12 +10,12 @@ const routes: Routes = [
     component: ListaProductosComponent,
   },
   {
-    path: ':id',
-    component: MostrarProductoComponent
-  },
-  {
     path: 'agregar',
     component: AgregarProductoComponent,
+  },
+  {
+    path: ':id',
+    component: MostrarProductoComponent
   },
   {
     path: 'editar/:id',

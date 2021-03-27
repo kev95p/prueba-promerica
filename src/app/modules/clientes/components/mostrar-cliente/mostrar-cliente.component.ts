@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ClienteModel } from 'src/app/models/cliente.model';
+import { DetalleComponent } from 'src/app/modules/shared/components/detalle.component';
 import { ClientesService } from 'src/app/services/clientes.service';
 
 @Component({
@@ -8,20 +9,17 @@ import { ClientesService } from 'src/app/services/clientes.service';
   templateUrl: './mostrar-cliente.component.html',
   styleUrls: ['./mostrar-cliente.component.scss'],
 })
-export class MostrarClienteComponent implements OnInit {
-  cliente: ClienteModel = {};
+export class MostrarClienteComponent extends DetalleComponent implements OnInit {
+  data: ClienteModel = {};
 
   constructor(
-    private route: ActivatedRoute,
-    private clientesService: ClientesService
-  ) {}
+    protected route: ActivatedRoute,
+    protected clientesService: ClientesService
+  ) {
+    super(route, clientesService);
+  }
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id != null) {
-      this.clientesService.getOne(id).subscribe((cliente) => {
-        this.cliente = cliente;
-      });
-    }
+    super.ngOnInit();
   }
 }

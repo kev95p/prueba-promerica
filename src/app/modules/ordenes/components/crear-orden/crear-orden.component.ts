@@ -1,9 +1,6 @@
-import { ParsedVariable } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { map } from 'rxjs/operators';
-import { ClienteModel } from 'src/app/models/cliente.model';
-import { ProductoModel } from 'src/app/models/producto.model';
 import { BaseFormComponent } from 'src/app/modules/shared/components/base-form.component';
 import { SelectItem } from 'src/app/modules/shared/interfaces/select-item';
 import { ClientesService } from 'src/app/services/clientes.service';
@@ -69,13 +66,13 @@ export class CrearOrdenComponent extends BaseFormComponent implements OnInit {
   }
 
   clienteSeleccionado(item: SelectItem): void {
-    this.dataForm.controls['clienteId'].setValue(item.value);
-    this.dataForm.controls['cliente'].setValue(item.displayName);
+    this.dataForm.controls.clienteId.setValue(item.value);
+    this.dataForm.controls.cliente.setValue(item.displayName);
   }
 
   productoSeleccionado(item: SelectItem): void {
-    this.dataForm.controls['productoId'].setValue(item.value);
-    this.dataForm.controls['producto'].setValue(item.displayName);
+    this.dataForm.controls.productoId.setValue(item.value);
+    this.dataForm.controls.producto.setValue(item.displayName);
   }
 
   ngOnInit(): void {

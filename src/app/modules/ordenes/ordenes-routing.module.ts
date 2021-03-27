@@ -11,12 +11,12 @@ const routes: Routes = [
     component: ListaOrdenesComponent,
   },
   {
-    path: ':id',
-    component: MostrarOrdenComponent
-  },
-  {
     path: 'crear-orden',
     component: CrearOrdenComponent,
+  },
+  {
+    path: ':id',
+    component: MostrarOrdenComponent
   },
 ];
 

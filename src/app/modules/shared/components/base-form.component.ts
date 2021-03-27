@@ -1,15 +1,12 @@
-import { Component } from "@angular/core";
-import { FormGroup } from "@angular/forms";
+import { Component } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-base-form',
   template: ` <div>base works!!</div> `,
 })
-export class BaseFormComponent{
+export class BaseFormComponent {
+  protected dataForm: FormGroup = new FormGroup({});
 
-  protected dataForm:FormGroup = new FormGroup({})
-
-  constructor(){
-  }
-
+  constructor() {}
 }

@@ -1,1 +1,27 @@
-<p>mostrar-orden works!</p>
+<div class="row">
+  <div class="offset-1 col-10">
+    <h3 class="mt-2">Detalle de orden</h3>
+    <ul class="list-group mt-3">
+      <li class="list-group-item"><b>Codigo:</b> {{data.id}}</li>
+      <li class="list-group-item"><b>Cantidad:</b> {{data.cantidad}}</li>
+      <li class="list-group-item"><b>Fecha:</b> {{data.fecha}}</li>
+    </ul>
+  </div>
+
+  <div class="offset-1 col-10">
+    <h3 class="mt-2">Producto</h3>
+    <ul class="list-group mt-3">
+      <li class="list-group-item"><b>Nombre:</b> {{data.producto!.nombre}}</li>
+      <li class="list-group-item"><b>Descripcion:</b> {{data.producto!.descripcion}}</li>
+      <li class="list-group-item"><b>Precio:</b> {{data.producto!.precio}}</li>
+    </ul>
+  </div>
+
+  <div class="offset-1 col-10">
+    <h3 class="mt-2">Cliente</h3>
+    <ul class="list-group mt-3">
+      <li class="list-group-item"><b>Nombre:</b> {{data.cliente!.nombre}}</li>
+      <li class="list-group-item"><b>Apellido:</b> {{data.cliente!.apellidos}}</li>
+    </ul>
+  </div>
+</div>

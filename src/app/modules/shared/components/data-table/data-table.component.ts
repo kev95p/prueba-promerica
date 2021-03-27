@@ -12,27 +12,36 @@ export class DataTableComponent implements OnInit, TableComponent {
   data: TableProperties = { headers: [{ name: '', field: '' }], data: [{}] };
 
   @Output()
-  detalle =  new EventEmitter<string>();
+  detalle = new EventEmitter<string>();
 
   @Output()
-  editar =  new EventEmitter<string>();
+  editar = new EventEmitter<string>();
 
   @Output()
-  eliminar =  new EventEmitter<string>();
+  eliminar = new EventEmitter<string>();
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  onDetalle(id: string): void{
+  processField(field: string, value: any): string {
+    if (field.split('.').length >= 2) {
+      const props = field.split('.');
+      return value[props[0]][props[1]];
+    } else {
+      return value[field];
+    }
+  }
+
+  onDetalle(id: string): void {
     this.detalle.emit(id);
   }
 
-  onEditar(id: string): void{
+  onEditar(id: string): void {
     this.editar.emit(id);
   }
 
-  onEliminar(id: string): void{
+  onEliminar(id: string): void {
     this.eliminar.emit(id);
   }
 }

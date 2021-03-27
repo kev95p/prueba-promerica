@@ -23,7 +23,7 @@
       </div>
       <div class="form-group">
         <label for="txtDescripcion">Descripción</label>
-        <textarea id="txtDescripcion" class="form-control" rows="4"></textarea>
+        <textarea formControlName="descripcion" id="txtDescripcion" class="form-control" rows="4"></textarea>
       </div>
       <button type="submit" class="btn btn-primary" [disabled]="dataForm.invalid">Guardar</button>
     </form>

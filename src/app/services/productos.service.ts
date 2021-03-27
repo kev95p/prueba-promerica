@@ -3,11 +3,12 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ProductoModel } from '../models/producto.model';
 import { ENDPOINTS } from '../utils/enpoints';
+import { CrudService } from './interfaces/crud.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ProductosService {
+export class ProductosService implements CrudService {
   constructor(private client: HttpClient) {}
 
   getAll(): Observable<ProductoModel[]> {
@@ -26,9 +27,9 @@ export class ProductosService {
     );
   }
 
-  save(producto: ProductoModel) {
-    let headers = new HttpHeaders().append('Content-Type', 'application/json');
-    return this.client.post<ProductoModel[]>(
+  save(producto: ProductoModel): Observable<ProductoModel> {
+    const headers = new HttpHeaders().append('Content-Type', 'application/json');
+    return this.client.post<ProductoModel>(
       ENDPOINTS.GUARDAR_PRODUCTO,
       JSON.stringify(producto),
       { headers }

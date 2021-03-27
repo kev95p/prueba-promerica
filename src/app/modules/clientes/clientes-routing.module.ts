@@ -10,12 +10,12 @@ const routes: Routes = [
     component: ListaClientesComponent,
   },
   {
-    path: ':id',
-    component: MostrarClienteComponent
-  },
-  {
     path: 'agregar',
     component: AgregarClienteComponent,
+  },
+  {
+    path: ':id',
+    component: MostrarClienteComponent
   },
   {
     path: 'editar/:id',
