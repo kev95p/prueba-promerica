@@ -5,11 +5,12 @@ import { CrearOrdenComponent } from './components/crear-orden/crear-orden.compon
 import { OrdenesRoutingModule } from './ordenes-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MostrarOrdenComponent } from './components/mostrar-orden/mostrar-orden.component';
 
 
 
 @NgModule({
-  declarations: [ListaOrdenesComponent, CrearOrdenComponent],
+  declarations: [ListaOrdenesComponent, CrearOrdenComponent, MostrarOrdenComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

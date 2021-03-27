@@ -3,12 +3,18 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col" *ngFor="let header of data.headers">{{header.name}}</th>
+      <th scope="col">Acciones</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let d of data.data; index as i" >
       <th scope="row">{{i + 1}}</th>
       <td *ngFor="let h of data.headers">{{d[h.field]}}</td>
+            <td><div class="btn-group" role="group" >
+        <button type="button" (click)="onDetalle(d.id)" class="btn btn-info">Detalle</button>
+        <button type="button" (click)="onEditar(d.id)" class="btn btn-secundary">Editar</button>
+        <button type="button" (click)="onEliminar(d.id)" class="btn btn-danger">Eliminar</button>
+      </div></td>
     </tr>
   </tbody>
 </table>

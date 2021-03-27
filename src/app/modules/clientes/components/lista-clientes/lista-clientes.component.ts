@@ -1,9 +1,9 @@
 import {
   Component,
   ComponentFactoryResolver,
-  OnInit,
-  ViewChild,
+  OnInit
 } from '@angular/core';
+import { Router } from '@angular/router';
 import { ClienteModel } from 'src/app/models/cliente.model';
 import { BaseCrudComponent } from 'src/app/modules/shared/components/base-crud.component';
 import { TableProperties } from 'src/app/modules/shared/interfaces/table-properties';
@@ -29,6 +29,7 @@ export class ListaClientesComponent
 
   constructor(
     protected componentFactoryResolver: ComponentFactoryResolver,
+    private router: Router,
     private clientesService: ClientesService
   ) {
     super(componentFactoryResolver);
@@ -47,4 +48,15 @@ export class ListaClientesComponent
       this.loadComponent(this.tableProperties);
     });
   }
+
+  onDetalle(value: string): void {
+    super.onDetalle(value);
+    this.router.navigate(['/clientes', value]);
+  }
+
+  onEditar(value: string): void{
+    super.onEditar(value);
+    this.router.navigate(['/clientes/editar', value]);
+  }
+
 }

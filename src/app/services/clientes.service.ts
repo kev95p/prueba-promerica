@@ -31,10 +31,20 @@ export class ClientesService {
       'Content-Type',
       'application/json'
     );
-    return this.client.post<ClienteModel[]>(
-      ENDPOINTS.GUARDAR_CLIENTE,
-      JSON.stringify(cliente),
-      { headers }
-    );
+    if (cliente.id){
+      return this.client.put<ClienteModel[]>(
+        ENDPOINTS.GUARDAR_CLIENTE,
+        JSON.stringify(cliente),
+        { headers }
+      );
+    }
+    else{
+      return this.client.post<ClienteModel[]>(
+        ENDPOINTS.GUARDAR_CLIENTE,
+        JSON.stringify(cliente),
+        { headers }
+      );
+    }
+
   }
 }

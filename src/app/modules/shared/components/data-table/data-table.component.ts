@@ -1,20 +1,38 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TableProperties } from '../../interfaces/table-properties';
 import { TableComponent } from '../../interfaces/table.component';
 
 @Component({
   selector: 'app-data-table',
   templateUrl: './data-table.component.html',
-  styleUrls: ['./data-table.component.scss']
+  styleUrls: ['./data-table.component.scss'],
 })
-export class DataTableComponent implements OnInit,TableComponent {
+export class DataTableComponent implements OnInit, TableComponent {
   @Input()
-  data: TableProperties = {headers:[{name:"",field:""}],data:[{}]};
+  data: TableProperties = { headers: [{ name: '', field: '' }], data: [{}] };
 
-  constructor() { }
+  @Output()
+  detalle =  new EventEmitter<string>();
 
+  @Output()
+  editar =  new EventEmitter<string>();
 
-  ngOnInit(): void {
+  @Output()
+  eliminar =  new EventEmitter<string>();
+
+  constructor() {}
+
+  ngOnInit(): void {}
+
+  onDetalle(id: string): void{
+    this.detalle.emit(id);
   }
 
+  onEditar(id: string): void{
+    this.editar.emit(id);
+  }
+
+  onEliminar(id: string): void{
+    this.eliminar.emit(id);
+  }
 }

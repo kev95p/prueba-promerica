@@ -2,20 +2,29 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AgregarClienteComponent } from './components/agregar-cliente/agregar-cliente.component';
 import { ListaClientesComponent } from './components/lista-clientes/lista-clientes.component';
+import { MostrarClienteComponent } from './components/mostrar-cliente/mostrar-cliente.component';
 
 const routes: Routes = [
   {
-    path: "",
-    component: ListaClientesComponent
+    path: '',
+    component: ListaClientesComponent,
   },
   {
-    path: "agregar",
-    component: AgregarClienteComponent
-  }
+    path: ':id',
+    component: MostrarClienteComponent
+  },
+  {
+    path: 'agregar',
+    component: AgregarClienteComponent,
+  },
+  {
+    path: 'editar/:id',
+    component: AgregarClienteComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class ClientesRoutingModule { }
+export class ClientesRoutingModule {}
