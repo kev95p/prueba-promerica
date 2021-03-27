@@ -29,10 +29,20 @@ export class ProductosService implements CrudService {
 
   save(producto: ProductoModel): Observable<ProductoModel> {
     const headers = new HttpHeaders().append('Content-Type', 'application/json');
-    return this.client.post<ProductoModel>(
-      ENDPOINTS.GUARDAR_PRODUCTO,
-      JSON.stringify(producto),
-      { headers }
-    );
+    if (producto.id){
+      return this.client.put<ProductoModel>(
+        ENDPOINTS.OBTENER_PRODUCTO.replace(':id', producto.id),
+        JSON.stringify(producto),
+        { headers }
+      );
+    }
+    else{
+      return this.client.post<ProductoModel>(
+        ENDPOINTS.GUARDAR_PRODUCTO,
+        JSON.stringify(producto),
+        { headers }
+      );
+    }
+
   }
 }

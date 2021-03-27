@@ -24,6 +24,7 @@ export class ListaOrdenesComponent extends BaseCrudComponent implements OnInit {
       { name: 'Cliente', field: 'cliente.nombre' },
       { name: 'Fecha', field: 'fecha' },
     ],
+    edit: false
   };
 
   constructor(

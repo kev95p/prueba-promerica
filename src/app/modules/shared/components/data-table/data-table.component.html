@@ -15,7 +15,7 @@
           <button type="button" (click)="onDetalle(d.id)" class="btn btn-info">
             Detalle
           </button>
-          <button type="button" (click)="onEditar(d.id)" class="btn btn-secundary">
+          <button *ngIf="data.edit" (click)="onEditar(d.id)" class="btn btn-secundary">
             Editar
           </button>
         </div>

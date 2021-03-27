@@ -25,6 +25,7 @@ export class ListaClientesComponent
       { name: 'Nombre', field: 'nombre' },
       { name: 'Apellidos', field: 'apellidos' },
     ],
+    edit: true,
   };
 
   constructor(

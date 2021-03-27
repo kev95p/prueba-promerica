@@ -28,7 +28,7 @@ export class ClientesService implements CrudService {
     );
     if (cliente.id){
       return this.client.put<ClienteModel>(
-        ENDPOINTS.GUARDAR_CLIENTE,
+        ENDPOINTS.OBTENER_CLIENTE.replace(':id', cliente.id),
         JSON.stringify(cliente),
         { headers }
       );

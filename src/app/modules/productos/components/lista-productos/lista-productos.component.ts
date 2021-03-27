@@ -22,6 +22,7 @@ export class ListaProductosComponent
       { name: 'Descripción', field: 'descripcion' },
       { name: 'Precio', field: 'precio' },
     ],
+    edit: true,
   };
 
   constructor(

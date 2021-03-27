@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { map } from 'rxjs/operators';
+import { OrdenModel } from 'src/app/models/orden.model';
 import { BaseFormComponent } from 'src/app/modules/shared/components/base-form.component';
 import { SelectItem } from 'src/app/modules/shared/interfaces/select-item';
 import { ClientesService } from 'src/app/services/clientes.service';
+import { OrdenesService } from 'src/app/services/ordenes.service';
 import { ProductosService } from 'src/app/services/productos.service';
 
 @Component({
@@ -26,7 +28,8 @@ export class CrearOrdenComponent extends BaseFormComponent implements OnInit {
 
   constructor(
     private clientesService: ClientesService,
-    private productosService: ProductosService
+    private productosService: ProductosService,
+    private ordenesService: OrdenesService
   ) {
     super();
   }
@@ -81,6 +84,13 @@ export class CrearOrdenComponent extends BaseFormComponent implements OnInit {
   }
 
   guardarOrden(): void {
-    this.dataForm.markAllAsTouched();
+    const orden = new OrdenModel();
+    orden.cantidad = this.dataForm.controls.cantidad.value;
+    orden.idProducto = this.dataForm.controls.productoId.value;
+    orden.idCliente = this.dataForm.controls.clienteId.value;
+    orden.fecha = this.dataForm.controls.fecha.value;
+    this.ordenesService.save(orden).subscribe(r=>{
+
+    });
   }
 }

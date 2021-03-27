@@ -9,7 +9,11 @@ import { TableComponent } from '../../interfaces/table.component';
 })
 export class DataTableComponent implements OnInit, TableComponent {
   @Input()
-  data: TableProperties = { headers: [{ name: '', field: '' }], data: [{}] };
+  data: TableProperties = {
+    headers: [{ name: '', field: '' }],
+    data: [{}],
+    edit: true,
+  };
 
   @Output()
   detalle = new EventEmitter<string>();

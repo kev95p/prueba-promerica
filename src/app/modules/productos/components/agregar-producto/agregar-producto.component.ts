@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { ProductoModel } from 'src/app/models/producto.model';
 import { ProductosService } from 'src/app/services/productos.service';
 
 @Component({
@@ -32,8 +33,16 @@ export class AgregarProductoComponent implements OnInit {
     }
   }
 
-  guardarProducto(){
+  guardarProducto(): void{
+    const producto = new ProductoModel();
+    producto.nombre = this.dataForm.controls.nombre.value;
+    producto.descripcion = this.dataForm.controls.descripcion.value;
+    producto.precio = this.dataForm.controls.precio.value;
+    producto.id = this.id;
+    this.productosService.save(producto)
+    .subscribe(r=>{
 
+    })
   }
 
 }

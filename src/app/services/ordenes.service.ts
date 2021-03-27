@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { OrdenModel } from '../models/orden.model';
 import { ENDPOINTS } from '../utils/enpoints';
@@ -35,7 +35,15 @@ export class OrdenesService implements CrudService {
 
 
   save(data: OrdenModel): Observable<OrdenModel> {
-    throw new Error('Method not implemented.');
+    const headers = new HttpHeaders().append(
+      'Content-Type',
+      'application/json'
+    );
+    return this.client.post<OrdenModel>(
+      ENDPOINTS.GUARDAR_ORDEN,
+      JSON.stringify(data),
+      { headers }
+    );
   }
 
   getAll(): Observable<OrdenModel[]> {

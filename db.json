@@ -23,11 +23,25 @@
   ],
   "ordenes": [
     {
+      "cantidad": 33,
       "idProducto": "1",
-      "idCliente": "1",
-      "id": "1",
-      "cantidad": "1",
-      "fecha": "2020/11/09"
+      "idCliente": "2",
+      "fecha": "2021-03-12",
+      "id": "DOXekGK"
+    },
+    {
+      "cantidad": 33,
+      "idProducto": "3",
+      "idCliente": "3",
+      "fecha": "2021-03-09",
+      "id": "0ErJ6yQ"
+    },
+    {
+      "cantidad": 23,
+      "idProducto": "2",
+      "idCliente": "2",
+      "fecha": "2021-03-19",
+      "id": "VJqn06G"
     }
   ],
   "productos": [
@@ -48,6 +62,12 @@
       "nombre": "Smartphone",
       "descripcion": "Velocidad y excelente camara",
       "precio": "112.50"
+    },
+    {
+      "nombre": "Controll",
+      "descripcion": "fa;fadfmap;fljmadfqa",
+      "precio": "100",
+      "id": "K6xgdiR"
     }
   ]
 }
